@@ -6,7 +6,7 @@
         <jar destfile="${basedir}/dist/mysqlbuddy.jar">
             <manifest>
                 <attribute name="Main-Class" value="com.benohead.tools.mysql.MySQLBuddyApplication"/>
-                <attribute name="Class-Path" value=". mysqlbuddy_lib/jconn3.jar mysqlbuddy_lib/images.jar mysqlbuddy_lib/swingx-all-1.6.4.jar"/>
+                <attribute name="Class-Path" value=". mysqlbuddy_lib/mysql-connector-java-5.1.22-bin.jar mysqlbuddy_lib/images.jar mysqlbuddy_lib/swingx-all-1.6.4.jar"/>
             </manifest>
             <fileset dir="${basedir}/bin"/>
         </jar>

@@ -12,12 +12,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -25,7 +23,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -187,53 +184,6 @@ public class MySQLBuddyApplication implements ChangeListener {
             e.printStackTrace();
             handleException(e);
         }
-    }
-
-    protected void createDdlProcedure(Connection connection2) {
-        BufferedReader br = null;
-        try {
-            StringBuilder sql = new StringBuilder();
-            FileReader fr = new FileReader("rev_tbl.sql");
-            br = new BufferedReader(fr);
-            String line = null;
-            Statement statement = connection.createStatement();
-            while ((line = br.readLine()) != null) {
-                if (line.trim().equalsIgnoreCase("go")) {
-                    statement.execute(sql.toString());
-                    sql.setLength(0);
-                }
-                else {
-                    sql.append(line).append("\n");
-                }
-            }
-            if (sql.length() > 0) {
-                statement.execute(sql.toString());
-            }
-        }
-        catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        finally {
-            if (br != null) {
-                try {
-                    br.close();
-                }
-                catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        }
-
     }
 
     private void databaseConnected() throws InterruptedException, InvocationTargetException {
@@ -414,7 +364,6 @@ public class MySQLBuddyApplication implements ChangeListener {
                 if ((connection != null) && (databaseBox.getSelectedItem() != null)) {
                     try {
                         connection.createStatement().execute("use " + databaseBox.getSelectedItem().toString());
-                        createDdlProcedure(connection);
                         refresh();
                     }
                     catch (Exception e) {
@@ -612,7 +561,7 @@ public class MySQLBuddyApplication implements ChangeListener {
                 String menuItem = p.get("menuitem_" + itemId).toString();
                 String action = p.get("action_" + itemId).toString();
                 String sql = p.get("sql_" + itemId).toString();
-                ArrayList<ContextMenuItem> contextMenu = contextMenuItems.get(columnName);
+                ArrayList<ContextMenuItem> contextMenu = contextMenuItems.get(columnName.toLowerCase());
                 if (contextMenu == null) {
                     contextMenu = new ArrayList<ContextMenuItem>();
                     contextMenuItems.put(columnName.toLowerCase(), contextMenu);
