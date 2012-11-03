@@ -6,15 +6,15 @@
         <jar destfile="${basedir}/dist/mysqlbuddy.jar">
             <manifest>
                 <attribute name="Main-Class" value="com.benohead.tools.mysql.MySQLBuddyApplication"/>
-                <attribute name="Class-Path" value=". mysqlbuddy_lib/jconn3.jar mysqlbuddy_lib/images.jar mysqlbuddy_lib/swingx-core-1.6.2.jar"/>
+                <attribute name="Class-Path" value=". mysqlbuddy_lib/jconn3.jar mysqlbuddy_lib/images.jar mysqlbuddy_lib/swingx-all-1.6.4.jar"/>
             </manifest>
             <fileset dir="${basedir}/bin"/>
         </jar>
         <delete dir="${basedir}/dist/mysqlbuddy_lib"/>
         <mkdir dir="${basedir}/dist/mysqlbuddy_lib"/>
-        <copy file="${basedir}/jconn3.jar" todir="${basedir}/dist/mysqlbuddy_lib"/>
+        <copy file="${basedir}/mysql-connector-java-5.1.22-bin.jar" todir="${basedir}/dist/mysqlbuddy_lib"/>
         <copy file="${basedir}/images.jar" todir="${basedir}/dist/mysqlbuddy_lib"/>
-        <copy file="${basedir}/swingx-core-1.6.2.jar" todir="${basedir}/dist/mysqlbuddy_lib"/>
+        <copy file="${basedir}/swingx-all-1.6.4.jar" todir="${basedir}/dist/mysqlbuddy_lib"/>
         <copy file="${basedir}/tabs.ini" todir="${basedir}/dist"/>
         <copy file="${basedir}/contextmenu.ini" todir="${basedir}/dist"/>
         <copy file="${basedir}/servers.ini" todir="${basedir}/dist"/>
