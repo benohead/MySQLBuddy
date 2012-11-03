@@ -1,4 +1,4 @@
-package com.benohead.tools.sybase;
+package com.benohead.tools.mysql;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

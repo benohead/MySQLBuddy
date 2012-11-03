@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.benohead.tools.sybase;
+package com.benohead.tools.mysql;
 
 import java.awt.Color;
 import java.awt.Component;

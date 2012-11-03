@@ -1,4 +1,4 @@
-package com.benohead.tools.sybase;
+package com.benohead.tools.mysql;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
